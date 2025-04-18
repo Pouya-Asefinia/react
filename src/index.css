@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+body {
+    background-color: #111111;
+    color: #fafafa;
+}
+
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container {
+padding-left: 1.5rem;
+padding-right: 1.5rem;
+}
