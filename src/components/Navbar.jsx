@@ -17,7 +17,7 @@ function Navbar() {
 
     return (
         <>
-            <div className="border-b border-gray-300 py-2.5">
+            <div className="border-b border-gray-300 py-2.5 mb-2">
                 <div className="flex justify-end">
                     <Button onClick={handleOpen} type="button" className=" py-2 px-4 border border-gray-300 hover:bg-gray-600 transition-all rounded-md cursor-pointer text-white flex items-center gap-1">
                         <IoCartOutline className="size-5" />

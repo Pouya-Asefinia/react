@@ -15,13 +15,11 @@ export function CartProvider({ children}) {
     const [cartProducts, setCartProducts] = useState([])
 
     function getProductQuantity(id) {
-        cartProducts.find((item) => item.id ===id)?.quantity
-
-        if (quantity === undefined) {
-            return 0 
+        const product = cartProducts.find((item) => item.id === id);
+        if (!product) {
+            return 0;
         }
-
-        return quantity
+        return product.quantity;
     }
 
     function addItemToCart(id) {
@@ -30,14 +28,16 @@ export function CartProvider({ children}) {
         if (quantity === 0) {
             setCartProducts([...cartProducts, { id: id, quantity: 1 }])
         } else {
-            setCartProducts.map((item) => item.id === id ? { ...item, quantity: item.quantity + 1} : item)
+            setCartProducts((cartProducts) =>
+                cartProducts.map((item) =>
+                    item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+                )
+            )
         }
     }
 
     function deleteFromCart(id) {
-        setCartProducts((cartProducts) => cartProducts.filter((item) => {
-            item.id != id
-        }))
+        setCartProducts((cartProducts) => cartProducts.filter((item) => item.id !== id))
     }
 
     function removeItemFromCart(id) {
@@ -46,8 +46,10 @@ export function CartProvider({ children}) {
         if (quantity === 1) {
             deleteFromCart(id)
         } else {
-            setCartProducts(
-                cartProducts.map((item) => item.id === id ? { ...item, quantity: item.quantity - 1 } : item)
+            setCartProducts((cartProducts) =>
+                cartProducts.map((item) =>
+                    item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+                )
             )
         }
     }
@@ -55,11 +57,13 @@ export function CartProvider({ children}) {
     function getTotalAmount() {
         let totalAmount = 0
 
-        cartProducts.map((item) => {
+        cartProducts.forEach((item) => {
             const productData = getProductData(item.id)
 
             totalAmount += productData.price * item.quantity
         })
+
+        return totalAmount
     }
 
     const ContextValue = {
