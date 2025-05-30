@@ -6,7 +6,6 @@ import {
     Button
   } from "@material-tailwind/react";
 
-  import { FaTrashAlt } from "react-icons/fa";
 
   import { CartContext } from '../context/cartCntext'
  
@@ -48,7 +47,7 @@ function ProductItem({ product }) {
                             </ButtonGroup>
                         </div>
                         <button 
-                            className="outline p-2 mt-4 rounded-md hover:bg-white hover:text-black text-white transition-all"
+                            className="outline p-2 mt-4 rounded-md bg-white text-black"
                             onClick={() => cart.deleteFromCart(product.id)}
                             >
                             حذف از سبد خرید
